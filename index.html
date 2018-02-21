@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Виселица</title>
+</head>
+<body>
+	<h1>Виселица</h1>
+	<script type="text/javascript">
+		var words = [
+		"наука",
+		"любовь",
+		"программа",
+		"единорог"
+		];
+		//выбираем случайное число
+		var randWord = words[Math.floor(Math.random() * words.length)]; 
+		//создаем загадочный массив
+		var answerArray = [];
+		for (var i = 0; i < randWord.length; i++){
+			answerArray[i] = "_";
+		}
+		var remainingLetters = randWord.length;
+		//игровой цикл
+		while (remainingLetters > 0){
+			alert(answerArray.join(" "));
+			var guess =  prompt ("Угадайте букву, или нажмите Отмена для выхода из игры.").toLowerCase();
+			if (guess === null) {
+				//выход из игрового цикла
+				break;
+			}
+			else if (guess.length !== 1) {
+				alert ("Пожалуйста, введите только одну букву!");
+			}
+			else {
+				for (var j = 0; j < randWord.length; j++){
+					if (randWord[j] === guess){
+						answerArray[j] = guess;
+						remainingLetters--;
+					}
+				}
+			}
+			//конец игрового цикла
+		}
+		//отображаем ответ и поздравление
+		alert (answerArray.join(""));
+		alert ("Молодец! Было загадано слово " + randWord);
+
+	</script>
+
+</body>
+</html>
